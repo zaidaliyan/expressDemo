@@ -1,0 +1,139 @@
+
+Project Documentation
+Overview
+This project is a simple RESTful API implemented using Node.js and Express.js. It provides endpoints to perform CRUD operations on a collection of student data stored in a JSON file. Additionally, it includes endpoints for streaming data and implementing JWT-based authentication for user login and profile access.
+
+Installation and Setup
+Clone the project repository from GitHub.
+Install Node.js and npm if not already installed on your system.
+Navigate to the project directory in your terminal.
+Install project dependencies by running npm install.
+Start the server by running npm start.
+Endpoints
+1. Display All Students
+URL: /api/students
+Method: GET
+Description: Retrieves all student data from the JSON file.
+Sample Response:
+json
+
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "age": 20
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "age": 21
+    }
+]
+2. Display Student by ID
+URL: /api/students/:id
+Method: GET
+Description: Retrieves student data by ID from the JSON file.
+Sample Response:
+json
+
+{
+    "id": 1,
+    "name": "John Doe",
+    "age": 20
+}
+3. Add Student
+URL: /api/students
+Method: POST
+Description: Adds a new student to the JSON file.
+Request Body:
+json
+
+{
+    "name": "Alice Johnson",
+    "age": 19
+}
+Sample Response:
+json
+
+{
+    "id": 3,
+    "name": "Alice Johnson",
+    "age": 19
+}
+4. Update Student by ID
+URL: /api/students/:id
+Method: PATCH
+Description: Updates student data by ID in the JSON file.
+Request Body:
+json
+
+{
+    "name": "Updated Name",
+    "age": 25
+}
+Sample Response:
+json
+
+{
+    "id": 1,
+    "name": "Updated Name",
+    "age": 25
+}
+5. Delete Student by ID
+URL: /api/students/:id
+Method: DELETE
+Description: Deletes student data by ID from the JSON file.
+Sample Response: Student with id: 1 deleted successfully
+6. Stream Data
+URL: /api/streams
+Method: GET
+Description: Streams data from 'students.json' to 'writestream.json'.
+Response: Data written
+7. Pipe Data
+URL: /api/pipe
+Method: GET
+Description: Pipes data from 'writestream.json' to the response stream.
+Response: Streams the contents of 'writestream.json' to the client.
+8. User Login
+URL: /api/login
+Method: POST
+Description: Generates a JWT token for user authentication.
+Request Body:
+json
+
+{
+    "uname": "username",
+    "pass": "password"
+}
+Sample Response:
+json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoidXNlcm5hbWUiLCJwYXNzIjoicGFzc3dvcmQifSwiaWF0IjoxNjIyMjUzODM0LCJleHAiOjE2MjIyNTM4NzR9.Ny7o7CidPfdXK1kmV7-b6pP3l9cn2-z9vlf1wx5IB_0"
+}
+9. Verify Token for Profile Access
+URL: /api/profile
+Method: POST
+Description: Verifies JWT token for user profile access.
+Request Header: Authorization: Bearer <token>
+Sample Response:
+json
+
+{
+    "message": "Welcome",
+    "user": {
+        "uname": "username",
+        "pass": "password"
+    }
+}
+Dependencies
+Express.js
+fs (File System)
+jsonwebtoken (JWT)
+Usage
+Start the server by running npm start.
+Use API endpoints to perform CRUD operations on student data and implement authentication.
+Access the endpoints using tools like Postman or integrate them into your frontend application.
+Notes
+Ensure that 'students.json' exists in the project directory with valid JSON data for student records.
+Update the secret key used for JWT signing and verification for security purposes.
